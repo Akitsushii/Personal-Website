@@ -1,0 +1,157 @@
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-bg: #0b0b10;
+  --color-bg-1: #131319;
+  --color-bg-2: #1e1e26;
+  --color-fg: #f4f2e8;
+  --color-muted: #8b8a97;
+  --color-accent: #d4af37;
+  --color-accent-2: oklch(69.6% 0.17 162.48);
+
+  --max-width-content: 56rem;
+}
+
+@utility prose-terminal {
+  --tw-prose-body: var(--color-fg);
+  --tw-prose-headings: var(--color-fg);
+  --tw-prose-lead: var(--color-muted);
+  --tw-prose-links: var(--color-accent-2);
+  --tw-prose-bold: var(--color-fg);
+  --tw-prose-counters: var(--color-muted);
+  --tw-prose-bullets: var(--color-bg-2);
+  --tw-prose-hr: var(--color-bg-2);
+  --tw-prose-quotes: var(--color-fg);
+  --tw-prose-quote-borders: var(--color-accent);
+  --tw-prose-captions: var(--color-muted);
+  --tw-prose-code: var(--color-accent);
+  --tw-prose-pre-code: var(--color-fg);
+  --tw-prose-pre-bg: var(--color-bg-1);
+  --tw-prose-th-borders: var(--color-bg-2);
+  --tw-prose-td-borders: var(--color-bg-2);
+}
+
+@utility dot-grid {
+  background-image: radial-gradient(var(--color-bg-2) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+@utility bg-grid {
+  background-size: 80px 80px;
+  background-image:
+    linear-gradient(to right, var(--color-bg-2) 2px, transparent 2px),
+    linear-gradient(to bottom, var(--color-bg-2) 2px, transparent 2px);
+  animation: grid-scroll 8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-grid {
+    animation: none;
+  }
+}
+
+@keyframes grid-scroll {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: 80px 80px;
+  }
+}
+
+@utility pixelated {
+  image-rendering: pixelated;
+}
+
+/* scanlines + RGB subpixel stripe, static, no animation */
+.crt::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.06),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.06)
+    );
+  background-size:
+    100% 2px,
+    3px 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* the flicker, separate layer, separate animation */
+.crt::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.27861;
+  }
+  5% {
+    opacity: 0.34769;
+  }
+  10% {
+    opacity: 0.23604;
+  }
+  15% {
+    opacity: 0.10626;
+  }
+  20% {
+    opacity: 0.18128;
+  }
+  25% {
+    opacity: 0.10626;
+  }
+  30% {
+    opacity: 0.18128;
+  }
+  35% {
+    opacity: 0.23604;
+  }
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.hero-banner {
+  background-color: var(--color-bg-1);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-bg-2) 0,
+    var(--color-bg-2) 1px,
+    transparent 1px,
+    transparent 9px
+  );
+}
