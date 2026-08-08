@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Projects — None</title>
+	<title>Projects — Anthony</title>
 </svelte:head>
 
 <section class="py-12">
