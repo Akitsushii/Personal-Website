@@ -7,7 +7,7 @@ export const projects: Project[] = [
     status: STATUS.DONE,
     description:
       "A network-based software deployment system with inventory management for a university computer lab, built for my capstone.",
-    tags: ["Flask", "SQLite"],
+    tags: ["Flask", "SQLite", "Python", "Tailwind CSS", "JavaScript"],
     href: "https://github.com/Akitsushii/AppEase-OneClick-Deploy",
     link: "https://github.com/Akitsushii/AppEase-OneClick-Deploy",
   },
